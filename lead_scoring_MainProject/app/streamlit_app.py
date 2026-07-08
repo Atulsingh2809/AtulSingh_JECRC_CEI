@@ -10,10 +10,18 @@ from __future__ import annotations
 
 import logging
 import io
+import sys
 from pathlib import Path
 import pandas as pd
 import numpy as np
 import streamlit as st
+
+# Add parent directory of 'app' to sys.path to enable imports of 'src'
+# regardless of the working directory the script is launched from.
+app_dir = Path(__file__).resolve().parent
+project_root = app_dir.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 # Set page config before importing other modules
 st.set_page_config(

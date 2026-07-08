@@ -10,8 +10,16 @@ from __future__ import annotations
 
 import logging
 import io
+import sys
+from pathlib import Path
 from typing import Any, Dict
 import pandas as pd
+
+# Add parent directory of 'app' to sys.path to enable imports of 'src'
+app_dir = Path(__file__).resolve().parent
+project_root = app_dir.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 from fastapi import FastAPI, HTTPException, UploadFile, File, Query
 from fastapi.middleware.cors import CORSMiddleware
